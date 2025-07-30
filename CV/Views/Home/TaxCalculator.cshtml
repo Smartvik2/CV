@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Tax Calculator";
+
+    // Safely unbox ViewBag values, defaulting to 0 if not set
+    decimal salary = ViewBag.Salary != null
+        ? (decimal)ViewBag.Salary
+        : 0m;
+    decimal tax = ViewBag.Tax != null
+        ? (decimal)ViewBag.Tax
+        : 0m;
+}
+
+<h1>Tax Calculator</h1>
+
+<form asp-action="TaxCalculator" method="post" class="mb-4">
+    <div class="mb-3">
+        <label for="salary" class="form-label">Annual Salary (₦)</label>
+        <input type="number"
+               class="form-control"
+               id="salary"
+               name="salary"
+               step="0.01"
+               value="@salary" />
+    </div>
+    <button type="submit" class="btn btn-primary">Calculate</button>
+</form>
+
+@if (ViewBag.Tax != null)
+{
+    <div class="alert alert-success">
+        Your Tax on @($"₦{salary:N0}") is @($"₦{tax:N0}").
+    </div>
+}
