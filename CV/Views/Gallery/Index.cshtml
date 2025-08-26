@@ -1,0 +1,37 @@
+﻿@model IEnumerable<CV.DTOs.GalleryDTO>
+
+@{
+    ViewData["Title"] = "Gallery";
+}
+
+<h2 class="mb-4">Photo Gallery</h2>
+
+<p>
+    <a asp-controller="Gallery" asp-action="Upload" class="btn btn-primary">Upload New Photo</a>
+</p>
+
+<div class="row">
+    @if (Model != null && Model.Any())
+    {
+        foreach (var item in Model)
+        {
+            <div class="col-md-3 mb-4">
+                <div class="card shadow-sm">
+                    <img src="@item.ImageUrl" class="card-img-top" alt="@item.Title" />
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Title</h5>
+                        <p class="card-text">
+                            <small class="text-muted">
+                                Uploaded: @item.UploadedAt.ToString("dd MMM yyyy")
+                            </small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <p>No photos uploaded yet.</p>
+    }
+</div>

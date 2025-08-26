@@ -1,0 +1,18 @@
+﻿@model CV.DTOs.UploadPhotoDTO
+
+<form asp-controller="Gallery" asp-action="Upload" method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label asp-for="Title" class="form-label">Title</label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="File" class="form-label">Choose Photo</label>
+        <input asp-for="File" type="file" class="form-control" />
+        <span asp-validation-for="File" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Upload</button>
+    <a asp-controller="Gallery" asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
